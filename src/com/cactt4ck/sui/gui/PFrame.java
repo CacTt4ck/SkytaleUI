@@ -1,15 +1,18 @@
 package com.cactt4ck.sui.gui;
 
+import fr.skytale.rpeditor.resourcepack.ResourcePack;
+
 import javax.swing.*;
 import java.awt.*;
 
 public final class PFrame extends JFrame {
 
-    private final JPanel rootPanel, editionPanel;
+    private final JPanel rootPanel;
+    private JPanel editionPanel;
+    private ResourcePack resourcePack;
 
     public PFrame() {
         this.rootPanel = new PPanel(this);
-        this.editionPanel = new EditionPanel(this);
 
         this.setSize(new Dimension(1280, 720));
         this.setTitle("SkytaleUI");
@@ -21,6 +24,8 @@ public final class PFrame extends JFrame {
         this.setVisible(true);
     }
 
+    // ---------------------------------------------------------------------- //
+
     public void switchContentPane(Panels panel) {
         switch (panel) {
             case ROOT -> {
@@ -29,10 +34,18 @@ public final class PFrame extends JFrame {
                 this.revalidate();
             }
             case EDITION -> {
-                this.setContentPane(this.editionPanel);
+                this.setContentPane(new EditionPanel(this, resourcePack.getFolder()));
                 this.repaint();
                 this.revalidate();
             }
         }
+    }
+
+    public ResourcePack getResourcePack() {
+        return resourcePack;
+    }
+
+    public void setResourcePack(ResourcePack resourcePack) {
+        this.resourcePack = resourcePack;
     }
 }

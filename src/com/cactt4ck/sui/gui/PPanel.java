@@ -18,7 +18,6 @@ public class PPanel extends JPanel {
     private JSeparator separator;
     private JPanel titlePanel;
     private SUIRootMenuBar menuBar;
-    private ResourcePack resourcePack;
     private final ResourcePackManager resourcePackManager;
     private PFrame rootFrame;
 
@@ -59,6 +58,8 @@ public class PPanel extends JPanel {
         this.titlePanel.add(this.menuBar, BorderLayout.NORTH);
     }
 
+    // ---------------------------------------------------------------------- //
+
     private File resourcePackPath() {
         JFileChooser filechooser = new JFileChooser();
         filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -69,7 +70,8 @@ public class PPanel extends JPanel {
     private ActionListener loadResourcePack() {
         return actionEvent -> {
             FileResourcePackLoader fileResourcePackLoader = new FileResourcePackLoader();
-            this.resourcePack = fileResourcePackLoader.load(new File(this.resourcePackPath().getAbsolutePath()), new FileResourcePackOptions(true));
+            this.rootFrame.setResourcePack(fileResourcePackLoader.load(new File(this.resourcePackPath().getAbsolutePath()),
+                    new FileResourcePackOptions(true)));
             this.rootFrame.switchContentPane(Panels.EDITION);
         };
     }
