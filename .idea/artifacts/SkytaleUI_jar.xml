@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SkytaleUI:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="SkytaleUI.jar">
+      <element id="module-output" name="SkytaleUI" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/rp-editor-1.0.0-all.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

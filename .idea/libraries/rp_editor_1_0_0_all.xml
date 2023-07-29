@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="rp-editor-1.0.0-all">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/rp-editor-1.0.0-all.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/3d-mw-rp-editor-master.zip!/3d-mw-rp-editor-master/src/main/java" />
+    </SOURCES>
+  </library>
+</component>
