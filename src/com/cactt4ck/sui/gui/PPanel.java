@@ -18,9 +18,9 @@ public class PPanel extends JPanel {
     private JPanel titlePanel;
     private SUIRootMenuBar menuBar;
     private final ResourcePackManager resourcePackManager;
-    private PFrame rootFrame;
+    private final PFrame rootFrame;
 
-    public PPanel(PFrame rootFrame) {
+    public PPanel(final PFrame rootFrame) {
         this.rootFrame = rootFrame;
         this.resourcePackManager = new ResourcePackManager();
         this.setLayout(new BorderLayout());

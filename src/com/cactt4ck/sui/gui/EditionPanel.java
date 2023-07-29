@@ -11,13 +11,20 @@ import java.io.File;
 
 public class EditionPanel extends JPanel {
 
+    private final JPanel rightPanel;
     private SUIEditionMenuBar menuBar;
     private PFrame rootFrame;
     private JTree rpTree;
     private final File folder;
+    private final JSplitPane centerPanel;
 
-    public EditionPanel(PFrame rootFrame, File folder) {
+    public EditionPanel(final PFrame rootFrame, File folder) {
         this.setLayout(new BorderLayout());
+        this.centerPanel = new JSplitPane();
+
+        this.rightPanel = new JPanel(new BorderLayout());
+        this.centerPanel.setRightComponent(this.rightPanel);
+
         this.rootFrame = rootFrame;
         this.folder = folder;
         this.init();
@@ -39,7 +46,10 @@ public class EditionPanel extends JPanel {
         this.createNodes(root, new File(this.folder.toURI()));
         this.rpTree = new JTree(new DefaultTreeModel(root));
         JScrollPane scrollPane = new JScrollPane(rpTree);
-        this.add(scrollPane, BorderLayout.WEST);
+
+        this.centerPanel.setLeftComponent(scrollPane);
+
+        this.add(this.centerPanel, BorderLayout.CENTER);
     }
 
     // ---------------------------------------------------------------------- //
