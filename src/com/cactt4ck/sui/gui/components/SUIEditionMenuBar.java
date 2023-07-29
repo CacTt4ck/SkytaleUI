@@ -68,63 +68,62 @@ public class SUIEditionMenuBar extends JMenuBar {
     }
 
     public JMenu getFileMenu() {
-        return fileMenu;
+        return this.fileMenu;
     }
 
     public JMenu getActionMenu() {
-        return actionMenu;
+        return this.actionMenu;
     }
 
-    @Override
     public JMenu getHelpMenu() {
-        return helpMenu;
+        return this.helpMenu;
     }
 
     public JMenu getModelSubMenu() {
-        return modelSubMenu;
+        return this.modelSubMenu;
     }
 
     public JMenu getCategorySubMenu() {
-        return categorySubMenu;
+        return this.categorySubMenu;
     }
 
     public JMenu getTextureSubMenu() {
-        return textureSubMenu;
+        return this.textureSubMenu;
     }
 
     public JMenuItem getCloseItem() {
-        return closeItem;
+        return this.closeItem;
     }
 
     public JMenuItem getAddModelItem() {
-        return addModelItem;
+        return this.addModelItem;
     }
 
     public JMenuItem getDeleteModelItem() {
-        return deleteModelItem;
+        return this.deleteModelItem;
     }
 
     public JMenuItem getGetInfoModelItem() {
-        return getInfoModelItem;
+        return this.getInfoModelItem;
     }
 
     public JMenuItem getAddCategoryItem() {
-        return addCategoryItem;
+        return this.addCategoryItem;
     }
 
     public JMenuItem getRemoveCategoryItem() {
-        return removeCategoryItem;
+        return this.removeCategoryItem;
     }
 
     public JMenuItem getListCategoryItem() {
-        return listCategoryItem;
+        return this.listCategoryItem;
     }
 
     public JMenuItem getCheckTextureItem() {
-        return checkTextureItem;
+        return this.checkTextureItem;
     }
 
     public JMenuItem getSharedTextureItem() {
-        return sharedTextureItem;
+        return this.sharedTextureItem;
     }
 }

@@ -3,7 +3,6 @@ package com.cactt4ck.sui.gui;
 import com.cactt4ck.sui.gui.components.SUIRootMenuBar;
 import fr.skytale.rpeditor.loaders.file.FileResourcePackLoader;
 import fr.skytale.rpeditor.loaders.file.FileResourcePackOptions;
-import fr.skytale.rpeditor.resourcepack.ResourcePack;
 import fr.skytale.rpeditor.resourcepack.ResourcePackManager;
 
 import javax.swing.*;
