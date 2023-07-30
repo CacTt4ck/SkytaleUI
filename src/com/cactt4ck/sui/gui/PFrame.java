@@ -8,7 +8,6 @@ import java.awt.*;
 public final class PFrame extends JFrame {
 
     private final JPanel rootPanel;
-    private JPanel editionPanel;
     private ResourcePack resourcePack;
 
     public PFrame() {
@@ -34,7 +33,7 @@ public final class PFrame extends JFrame {
                 this.revalidate();
             }
             case EDITION -> {
-                this.setContentPane(new EditionPanel(this, resourcePack.getFolder()));
+                this.setContentPane(new EditionPanel(this, this.resourcePack));
                 this.repaint();
                 this.revalidate();
             }
