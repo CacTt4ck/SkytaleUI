@@ -5,14 +5,19 @@ import fr.skytale.rpeditor.resourcepack.ResourcePack;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 public class EditionPanel extends JPanel {
 
@@ -21,11 +26,12 @@ public class EditionPanel extends JPanel {
     private PFrame rootFrame;
     private JTree rpTree;
     private final File folder;
+    private File currentSelectedFile = null;
     private final ResourcePack resourcePack;
     private final JSplitPane centerPanel;
-    private JLabel rightPanelTitle;
+    private JLabel rightPanelTitle, rightPanelImage;
 
-    public EditionPanel(final PFrame rootFrame, ResourcePack resourcePack) {
+    public EditionPanel(final PFrame rootFrame, final ResourcePack resourcePack) {
         this.setLayout(new BorderLayout());
         this.centerPanel = new JSplitPane();
 
@@ -48,7 +54,10 @@ public class EditionPanel extends JPanel {
         this.rightPanelTitle = new JLabel("Test");
         this.rightPanelTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
+        this.rightPanelImage = new JLabel();
+
         this.rightPanel.add(this.rightPanelTitle, BorderLayout.NORTH);
+        this.rightPanel.add(this.rightPanelImage, BorderLayout.CENTER);
     }
 
     private void menu() {
@@ -79,6 +88,24 @@ public class EditionPanel extends JPanel {
         return e -> {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) rpTree.getLastSelectedPathComponent();
             rightPanelTitle.setText(node.toString());
+
+            DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+            String pathLog = this.folder.getPath();
+
+            String[] splitted = pathLog.split("\\\\");
+            String newString = "";
+            for (int i = 0; i < splitted.length - 1; i++)
+                newString += splitted[i] + "/";
+            newString = newString.substring(0, newString.length() - 1);;
+            for (TreeNode childNode : treeNode.getPath())
+                newString += childNode.toString() + "/";
+
+            this.currentSelectedFile = new File(newString);
+            String filePath = this.currentSelectedFile.getPath();
+            System.out.println(filePath);
+
+            this.rightPanelImage.setIcon(new ImageIcon(this.currentSelectedFile.getPath()));
+            this.rightPanel.repaint();
         };
     }
 
@@ -87,13 +114,11 @@ public class EditionPanel extends JPanel {
             DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(file.getName());
             node.add(childNode);
             File[] files = file.listFiles();
-            if (files != null) {
-                for (File f : files) {
+            if (files != null)
+                for (File f : files)
                     createNodes(childNode, f);
-                }
-            }
-        } else {
+        } else
             node.add(new DefaultMutableTreeNode(file.getName()));
-        }
     }
+
 }
