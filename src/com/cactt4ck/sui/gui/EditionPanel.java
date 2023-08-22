@@ -54,7 +54,7 @@ public class EditionPanel extends JPanel {
         this.rightPanelTitle = new JLabel("Test");
         this.rightPanelTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
-        this.rightPanelImage = new JLabel();
+        this.rightPanelImage = new JLabel(new ImageIcon(getClass().getResource("/assets/images/minecraft-icon-0.png")));
 
         this.rightPanel.add(this.rightPanelTitle, BorderLayout.NORTH);
         this.rightPanel.add(this.rightPanelImage, BorderLayout.CENTER);
