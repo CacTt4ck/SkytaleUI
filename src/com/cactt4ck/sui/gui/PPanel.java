@@ -13,7 +13,6 @@ import java.io.File;
 public class PPanel extends JPanel {
 
     private JLabel title;
-    private JButton button;
     private JSeparator separator;
     private JPanel titlePanel;
     private SUIRootMenuBar menuBar;
@@ -29,20 +28,14 @@ public class PPanel extends JPanel {
 
     private void init() {
         this.title();
-        //this.button();
         this.menu();
-    }
-
-    private void button() {
-        this.button = new JButton("khfbsdjkfgv");
-        this.add(this.button, BorderLayout.SOUTH);
     }
 
     private void title() {
         this.titlePanel = new JPanel(new BorderLayout());
         this.separator = new JSeparator();
 
-        this.title = new JLabel("SkytaleUI");
+        this.title = new JLabel("Resource Pack Editor");
         this.title.setFont(new Font("Monaco", Font.PLAIN, 52));
         this.title.setHorizontalAlignment(SwingConstants.CENTER);
 

@@ -71,6 +71,30 @@ public class EditionPanel extends JPanel {
         this.createNodes(root, new File(this.folder.toURI()));
         this.rpTree = new JTree(new DefaultTreeModel(root));
         this.rpTree.addTreeSelectionListener(this.onClickTreeSelection());
+        this.rpTree.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) { // clic gauche
+                super.mousePressed(e);
+                int selectedRow = rpTree.getRowForLocation(e.getX(), e.getY());
+                if (selectedRow == -1)
+                    rpTree.clearSelection();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) { // clic droit
+                super.mouseReleased(e);
+                int selectedRow = rpTree.getRowForLocation(e.getX(), e.getY());
+                if (selectedRow != -1)
+                    if (e.isPopupTrigger()) {
+                        JPopupMenu popupMenu = new JPopupMenu();
+                        popupMenu.add("defefef");
+                        popupMenu.add("defefef");
+                        popupMenu.add("defefef");
+                        popupMenu.add("defefef");
+                        popupMenu.show(rpTree, e.getX(), e.getY());
+                    }
+            }
+        });
         JScrollPane scrollPane = new JScrollPane(rpTree);
 
         this.centerPanel.setLeftComponent(scrollPane);
@@ -87,9 +111,13 @@ public class EditionPanel extends JPanel {
     private TreeSelectionListener onClickTreeSelection() {
         return e -> {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) rpTree.getLastSelectedPathComponent();
+            if (node == null)
+                return;
             rightPanelTitle.setText(node.toString());
 
             DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+            if (treeNode == null)
+                return;
             String pathLog = this.folder.getPath();
 
             String[] splitted = pathLog.split("\\\\");
