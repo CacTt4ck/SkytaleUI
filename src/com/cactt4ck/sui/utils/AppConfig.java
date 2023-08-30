@@ -6,9 +6,10 @@ import java.util.Properties;
 public class AppConfig extends Properties {
 
     private final String directory, config, defaultConfig;
+    private File configFolder, configFile;
 
     public AppConfig() {
-        this.directory = System.getenv("APPDATA") + File.separator + "VotreApp" + File.separator;
+        this.directory = System.getenv("APPDATA") + File.separator + "ResourcePack Editor" + File.separator;
         this.config = "config.properties";
         this.defaultConfig = "/assets/config/config.properties";
 
@@ -17,8 +18,8 @@ public class AppConfig extends Properties {
     }
 
     private void init() {
-        File configFolder = new File(this.directory),
-                configFile = new File(this.directory + this.config);
+        this.configFolder = new File(this.directory);
+        this.configFile = new File(this.directory + this.config);
         if (!configFolder.exists()) {
             if (!configFolder.mkdirs())
                 System.out.println("Impossible de créer le dossier de configuration");
@@ -44,7 +45,7 @@ public class AppConfig extends Properties {
     }
 
     private void loadConfig() {
-        try (InputStream is = new FileInputStream(new File(this.directory + this.config))) {
+        try (InputStream is = new FileInputStream(this.directory + this.config)) {
             this.load(is);
             System.out.println(this.getProperty("theme"));
         } catch (IOException e) {
@@ -52,4 +53,11 @@ public class AppConfig extends Properties {
         }
     }
 
+    public void saveConfig() {
+        try (OutputStream output = new FileOutputStream(this.configFile)) {
+            this.store(output, null);
+        } catch (IOException io) {
+            throw new RuntimeException(io);
+        }
+    }
 }

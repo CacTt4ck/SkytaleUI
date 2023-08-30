@@ -70,9 +70,16 @@ public class ProjectMenuBar extends JMenuBar {
 
         this.changeTheme = new JMenuItem("Change theme");
         this.changeTheme.addActionListener(e -> new UiBooster().showConfirmDialog(
-                "Do you really want this action?",
-                "Are you sure?",
-                Utils::restartApp,
+                "Changer de theme entraine un redémarrage de l'application !",
+                "Voulez-vous redémarrer ?",
+                () -> {
+                    if (Main.CONFIG.getProperty("theme").equalsIgnoreCase("dark"))
+                        Main.CONFIG.setProperty("theme", "light");
+                    else
+                        Main.CONFIG.setProperty("theme", "dark");
+                    Main.CONFIG.saveConfig();
+                    Utils.restartApp();
+                },
                 null)
         );
         this.help.add(changeTheme);

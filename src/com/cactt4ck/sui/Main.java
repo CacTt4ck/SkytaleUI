@@ -10,9 +10,10 @@ import javax.swing.*;
 
 public class Main {
 
+    public static final AppConfig CONFIG = new AppConfig();
+
     public static void main(String[] args) {
-        AppConfig config = new AppConfig();
-        if (config.getProperty("theme").equalsIgnoreCase("dark"))
+        if (CONFIG.getProperty("theme").equalsIgnoreCase("dark"))
             FlatDarculaLaf.setup();
         else
             FlatLightLaf.setup();
