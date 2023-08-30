@@ -45,7 +45,7 @@ public class EditionPanel extends JPanel {
     }
 
     private void init() {
-        this.menu();
+        //this.menu();
         this.tree();
         this.rightPanelComponents();
     }
@@ -70,7 +70,7 @@ public class EditionPanel extends JPanel {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode();
         this.createNodes(root, new File(this.folder.toURI()));
         this.rpTree = new JTree(new DefaultTreeModel(root));
-        this.rpTree.addTreeSelectionListener(this.onClickTreeSelection());
+        //this.rpTree.addTreeSelectionListener(this.onClickTreeSelection());
         this.rpTree.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) { // clic gauche
@@ -78,6 +78,13 @@ public class EditionPanel extends JPanel {
                 int selectedRow = rpTree.getRowForLocation(e.getX(), e.getY());
                 if (selectedRow == -1)
                     rpTree.clearSelection();
+
+                TreePath selPath = rpTree.getPathForLocation(e.getX(), e.getY());
+                DefaultMutableTreeNode node;
+                if (selPath != null) {
+                    node = (DefaultMutableTreeNode) selPath.getLastPathComponent();
+                    rightPanelTitle.setText(node.toString());
+                }
             }
 
             @Override
@@ -105,7 +112,7 @@ public class EditionPanel extends JPanel {
     // ---------------------------------------------------------------------- //
 
     private ActionListener closeProject() {
-        return e -> this.rootFrame.switchContentPane(Panels.ROOT);
+        return e -> this.rootFrame.switchContentPane();
     }
 
     private TreeSelectionListener onClickTreeSelection() {

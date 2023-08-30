@@ -1,5 +1,9 @@
 package com.cactt4ck.sui.gui.components;
 
+import com.cactt4ck.sui.gui.PPanel;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 
 public class SUIRootMenuBar extends JMenuBar {
@@ -8,6 +12,7 @@ public class SUIRootMenuBar extends JMenuBar {
     private final JMenuItem open, close, exit;
 
     public SUIRootMenuBar() {
+
         this.file = new JMenu("File");
         this.edit = new JMenu("Edit");
         this.help = new JMenu("Help");

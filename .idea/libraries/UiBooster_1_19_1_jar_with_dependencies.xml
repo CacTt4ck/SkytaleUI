@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="UiBooster-1.19.1-jar-with-dependencies">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/UiBooster-1.19.1-jar-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

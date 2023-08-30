@@ -28,7 +28,7 @@ public class PPanel extends JPanel {
 
     private void init() {
         this.title();
-        this.menu();
+        //this.menu();
     }
 
     private void title() {
@@ -64,7 +64,7 @@ public class PPanel extends JPanel {
             FileResourcePackLoader fileResourcePackLoader = new FileResourcePackLoader();
             this.rootFrame.setResourcePack(fileResourcePackLoader.load(new File(this.resourcePackPath().getAbsolutePath()),
                     new FileResourcePackOptions(true)));
-            this.rootFrame.switchContentPane(Panels.EDITION);
+            this.rootFrame.switchContentPane();
         };
     }
 
