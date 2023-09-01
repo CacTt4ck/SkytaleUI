@@ -16,7 +16,7 @@ public class Utils {
             ProcessBuilder builder = new ProcessBuilder(command);
             builder.start();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
         System.exit(0);
     }

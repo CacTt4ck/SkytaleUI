@@ -61,7 +61,12 @@ public final class PFrame extends JFrame {
         this.menuBar = new ProjectMenuBar();
         this.menuBar.getOpen().addActionListener(this.loadResourcePack());
         this.menuBar.getClose().setEnabled(false);
+        this.menuBar.getClose().addActionListener(e -> this.switchContentPane());
         this.setJMenuBar(this.menuBar);
+    }
+
+    private ActionListener closeProject() {
+        return e -> this.switchContentPane();
     }
 
     private File resourcePackPath() {

@@ -45,7 +45,6 @@ public class EditionPanel extends JPanel {
     }
 
     private void init() {
-        //this.menu();
         this.tree();
         this.rightPanelComponents();
     }
@@ -58,12 +57,6 @@ public class EditionPanel extends JPanel {
 
         this.rightPanel.add(this.rightPanelTitle, BorderLayout.NORTH);
         this.rightPanel.add(this.rightPanelImage, BorderLayout.CENTER);
-    }
-
-    private void menu() {
-        this.menuBar = new SUIEditionMenuBar();
-        this.menuBar.getCloseItem().addActionListener(this.closeProject());
-        this.add(this.menuBar, BorderLayout.NORTH);
     }
 
     private void tree() {
@@ -94,10 +87,11 @@ public class EditionPanel extends JPanel {
                 if (selectedRow != -1)
                     if (e.isPopupTrigger()) {
                         JPopupMenu popupMenu = new JPopupMenu();
-                        popupMenu.add("defefef");
-                        popupMenu.add("defefef");
-                        popupMenu.add("defefef");
-                        popupMenu.add("defefef");
+                        popupMenu.add("Je suis un");
+                        popupMenu.add("Je suis deux");
+                        popupMenu.add("Je suis trois");
+                        popupMenu.add("Je suis quatre");
+                        popupMenu.add("Je suis cinq");
                         popupMenu.show(rpTree, e.getX(), e.getY());
                     }
             }
