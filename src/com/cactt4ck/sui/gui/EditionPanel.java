@@ -18,6 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class EditionPanel extends JPanel {
 
@@ -63,7 +66,6 @@ public class EditionPanel extends JPanel {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode();
         this.createNodes(root, new File(this.folder.toURI()));
         this.rpTree = new JTree(new DefaultTreeModel(root));
-        //this.rpTree.addTreeSelectionListener(this.onClickTreeSelection());
         this.rpTree.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) { // clic gauche
@@ -77,6 +79,26 @@ public class EditionPanel extends JPanel {
                 if (selPath != null) {
                     node = (DefaultMutableTreeNode) selPath.getLastPathComponent();
                     rightPanelTitle.setText(node.toString());
+
+                    List<String> paths = new ArrayList<String>();
+                    for (TreeNode element : node.getPath())
+                        paths.add(element.toString());
+                    paths.remove(0);
+                    String[] splitted = folder.getPath().split("\\\\");
+
+                    StringBuilder newString = new StringBuilder();
+                    for (int i = 0; i < splitted.length - 1; i++)
+                        newString.append(splitted[i]).append("/");
+                    for (String element : paths)
+                        newString.append(element).append("/");
+                    System.out.println(newString);
+                    currentSelectedFile = new File(newString.toString());
+
+                    ImageIcon imageIcon = new ImageIcon(currentSelectedFile.getPath());
+                    Image image = imageIcon.getImage().getScaledInstance(240, 240,  java.awt.Image.SCALE_SMOOTH);
+
+                    rightPanelImage.setIcon(new ImageIcon(image));
+                    rightPanel.repaint();
                 }
             }
 
@@ -104,39 +126,6 @@ public class EditionPanel extends JPanel {
     }
 
     // ---------------------------------------------------------------------- //
-
-    private ActionListener closeProject() {
-        return e -> this.rootFrame.switchContentPane();
-    }
-
-    private TreeSelectionListener onClickTreeSelection() {
-        return e -> {
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) rpTree.getLastSelectedPathComponent();
-            if (node == null)
-                return;
-            rightPanelTitle.setText(node.toString());
-
-            DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
-            if (treeNode == null)
-                return;
-            String pathLog = this.folder.getPath();
-
-            String[] splitted = pathLog.split("\\\\");
-            String newString = "";
-            for (int i = 0; i < splitted.length - 1; i++)
-                newString += splitted[i] + "/";
-            newString = newString.substring(0, newString.length() - 1);;
-            for (TreeNode childNode : treeNode.getPath())
-                newString += childNode.toString() + "/";
-
-            this.currentSelectedFile = new File(newString);
-            String filePath = this.currentSelectedFile.getPath();
-            System.out.println(filePath);
-
-            this.rightPanelImage.setIcon(new ImageIcon(this.currentSelectedFile.getPath()));
-            this.rightPanel.repaint();
-        };
-    }
 
     public void createNodes(DefaultMutableTreeNode node, File file) {
         if (file.isDirectory()) {
