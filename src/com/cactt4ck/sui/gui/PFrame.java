@@ -1,8 +1,6 @@
 package com.cactt4ck.sui.gui;
 
 import com.cactt4ck.sui.gui.components.ProjectMenuBar;
-import com.cactt4ck.sui.gui.components.SUIEditionMenuBar;
-import com.cactt4ck.sui.gui.components.SUIRootMenuBar;
 import fr.skytale.rpeditor.loaders.file.FileResourcePackLoader;
 import fr.skytale.rpeditor.loaders.file.FileResourcePackOptions;
 import fr.skytale.rpeditor.resourcepack.ResourcePack;
@@ -17,7 +15,6 @@ public final class PFrame extends JFrame {
     private final JPanel rootPanel;
     private ResourcePack resourcePack;
     private ProjectMenuBar menuBar;
-    private SUIEditionMenuBar editionMenuBar;
 
     public PFrame() {
         this.rootPanel = new PPanel(this);

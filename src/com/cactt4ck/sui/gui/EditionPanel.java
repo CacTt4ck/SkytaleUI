@@ -1,31 +1,22 @@
 package com.cactt4ck.sui.gui;
 
-import com.cactt4ck.sui.gui.components.SUIEditionMenuBar;
 import fr.skytale.rpeditor.resourcepack.ResourcePack;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class EditionPanel extends JPanel {
 
     private final JPanel rightPanel;
-    private SUIEditionMenuBar menuBar;
     private PFrame rootFrame;
     private JTree rpTree;
     private final File folder;

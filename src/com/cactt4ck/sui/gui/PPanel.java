@@ -1,14 +1,9 @@
 package com.cactt4ck.sui.gui;
 
-import com.cactt4ck.sui.gui.components.SUIRootMenuBar;
-import fr.skytale.rpeditor.loaders.file.FileResourcePackLoader;
-import fr.skytale.rpeditor.loaders.file.FileResourcePackOptions;
 import fr.skytale.rpeditor.resourcepack.ResourcePackManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class PPanel extends JPanel {
 
